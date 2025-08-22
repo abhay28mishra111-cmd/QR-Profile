@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart QR Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .avatar { width: 120px; height: 120px; }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900">
+  <div class="max-w-xl mx-auto p-6">
+    <header class="mb-6">
+      <h1 class="text-2xl font-bold">Smart QR Profile</h1>
+      <p class="text-sm text-gray-600">Open this page with URL parameters to auto‑display a person's info. Supported params:
+        <code>n</code> (name), <code>addr</code> (address), <code>work</code> (work/role), <code>photo</code> (image URL).</p>
+    </header>
+
+    <!-- Profile Card -->
+    <div id="card" class="bg-white shadow rounded-2xl p-5 grid grid-cols-1 gap-4">
+      <div class="flex items-center gap-4">
+        <div id="avatar" class="avatar rounded-2xl bg-gray-200 flex items-center justify-center overflow-hidden">
+          <span id="initials" class="text-3xl font-semibold text-gray-600"></span>
+          <img id="avatarImg" class="w-full h-full object-cover hidden" alt="Profile photo" />
+        </div>
+        <div>
+          <h2 id="name" class="text-xl font-semibold">—</h2>
+          <p id="work" class="text-gray-600">—</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-medium">Address</h3>
+        <p id="addr" class="text-gray-700">—</p>
+      </div>
+    </div>
+
+    <!-- Quick Builder -->
+    <div class="mt-8 bg-white shadow rounded-2xl p-5">
+      <h3 class="text-lg font-semibold mb-3">Build a sharable link</h3>
+      <form id="builder" class="grid grid-cols-1 gap-4">
+        <input id="iName" class="border rounded-xl p-3" placeholder="Full name" />
+        <input id="iWork" class="border rounded-xl p-3" placeholder="Work / Role" />
+        <textarea id="iAddr" class="border rounded-xl p-3" placeholder="Address" rows="3"></textarea>
+        <input id="iPhoto" class="border rounded-xl p-3" placeholder="Photo URL (optional)" />
+        <div class="flex gap-2 items-center">
+          <button type="button" id="makeLink" class="px-4 py-2 rounded-2xl bg-gray-900 text-white">Generate Link</button>
+          <a id="outLink" class="text-blue-600 break-all"></a>
+        </div>
+        <p class="text-xs text-gray-500">Host this file anywhere (GitHub Pages, Netlify, etc.). Then share the generated link and turn it into a QR code.</p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function getParam(key){ return new URLSearchParams(location.search).get(key) || ""; }
+    function setText(id, val){ document.getElementById(id).textContent = val || "—"; }
+
+    function showProfileFromParams(){
+      const n = getParam('n');
+      const addr = getParam('addr');
+      const work = getParam('work');
+      const photo = getParam('photo');
+
+      setText('name', n);
+      setText('addr', addr);
+      setText('work', work);
+
+      const initials = (n || '').trim().split(/\s+/).slice(0,2).map(s=>s[0]||'').join('').toUpperCase();
+      document.getElementById('initials').textContent = initials || '—';
+
+      const img = document.getElementById('avatarImg');
+      if(photo){
+        img.src = photo;
+        img.onload = ()=>{ img.classList.remove('hidden'); document.getElementById('initials').classList.add('hidden'); };
+        img.onerror = ()=>{ img.classList.add('hidden'); document.getElementById('initials').classList.remove('hidden'); };
+      }
+    }
+
+    function buildLink(){
+      const base = location.origin + location.pathname; // use same hosted path
+      const params = new URLSearchParams({
+        n: document.getElementById('iName').value.trim(),
+        work: document.getElementById('iWork').value.trim(),
+        addr: document.getElementById('iAddr').value.trim(),
+        photo: document.getElementById('iPhoto').value.trim()
+      });
+      // Remove empty params for a cleaner URL
+      [...params.keys()].forEach(k => { if(!params.get(k)) params.delete(k); });
+      const url = base + '?' + params.toString();
+      const out = document.getElementById('outLink');
+      out.href = url; out.textContent = url;
+    }
+
+    document.getElementById('makeLink').addEventListener('click', buildLink);
+    showProfileFromParams();
+  </script>
+</body>
+</html>
