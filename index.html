@@ -3,69 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leader Profile - Team 0008</title>
+  <title>Leader Profile - Thakur Mritunjay Singh</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(135deg, #1d2671, #c33764);
       color: white;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      height: 100vh;
     }
     .container {
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
       padding: 30px;
-      border-radius: 15px;
-      text-align: left;
-      max-width: 500px;
-      box-shadow: 0px 4px 20px rgba(0,0,0,0.5);
+      border-radius: 20px;
+      text-align: center;
+      max-width: 420px;
+      box-shadow: 0px 4px 20px rgba(0,0,0,0.6);
+    }
+    img.profile {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      margin-bottom: 15px;
     }
     h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 26px;
-      color: #ff9800;
+      margin-bottom: 5px;
+      font-size: 24px;
     }
     .info {
-      margin: 12px 0;
-      font-size: 16px;
+      text-align: left;
+      margin-top: 15px;
+      font-size: 15px;
       line-height: 1.6;
     }
     .info strong {
       color: #ff9800;
     }
-    .qr {
-      text-align: center;
-      margin-top: 20px;
-    }
     .qr img {
       width: 160px;
       height: 160px;
+      margin: 15px 0;
       border: 3px solid white;
       border-radius: 10px;
+    }
+    .btn {
+      display: block;
+      margin: 10px 0;
+      padding: 12px;
+      background: #ff9800;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #e68900;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>👑 Leader Profile</h1>
-    <div class="info"><strong>Name:</strong> Thakur Mritunjay</div>
-    <div class="info"><strong>Team:</strong> 0008</div>
-    <div class="info"><strong>Partner Name:</strong> Ravi Thakur</div>
-    <div class="info"><strong>Partner Name:</strong> Shakti Thakur</div>
-    <div class="info"><strong>Email:</strong> team0008@gmail.com</div>
-    <div class="info"><strong>Phone:</strong> +91 7007799827</div>
-    <div class="info"><strong>Location:</strong> Kanpur, India</div>
-    <div class="info"><strong>Address:</strong> 1317, Baudh Nagar Bamba, Kanpur</div>
-    <div class="info"><strong>Pin:</strong> 208021</div>
+    <!-- Profile Image -->
+    <img class="profile" src="https://avatars.githubusercontent.com/u/12345678?v=4" alt="Leader Photo">
 
+    <h1>👑 Thakur Mritunjay Singh</h1>
+    <p>Lobby: Team 0008</p>
+
+    <!-- QR Code -->
     <div class="qr">
-      <p>📱 Scan QR for this profile</p>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://your-github-link.github.io/leader-profile/" alt="QR Code">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://your-github-username.github.io/QR-Profile/" alt="QR Code">
+    </div>
+    <p>📱 Scan for full profile</p>
+
+    <!-- Important Info -->
+    <div class="info">
+      <p><strong>📍 Location:</strong> Baudh Nagar Bamba, Kanpur</p>
+      <p><strong>🤝 Partners:</strong> Ravi Thakur, Shakti Thakur</p>
+      <p><strong>📧 Email:</strong> <a href="mailto:Team0008@gmail.com" style="color:white;">Team0008@gmail.com</a></p>
+      <p><strong>📞 Phone:</strong> <a href="tel:+917007793839" style="color:white;">+91 7007793839</a></p>
     </div>
   </div>
 </body>
