@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Abhay Mishra - QR Profile</title>
+</head>
+<body style="font-family: Arial; text-align: center; padding: 40px;">
+  <h1>Abhay Mishra</h1>
+  <p><b>Address:</b> Lucknow, India</p>
+  <p><b>Work:</b> QEA Engineer at Cognizant</p>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://abhay28mishra111-cmd.github.io/QR-Profile/" alt="QR Code">
+</body>
+</html>
